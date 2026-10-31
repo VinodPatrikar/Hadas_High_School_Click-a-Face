@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Photo - Face Directory (53 Faces)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 { color: #333; margin-bottom: 5px; }
+        p { color: #666; margin-top: 0; }
+        
+        .container {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            max-width: 1400px;
+            width: 100%;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .image-container {
+            position: relative;
+            flex: 1 1 65%;
+            min-width: 0;
+        }
+
+        .image-container > img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+
+        .prepared-by {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            margin: 8px 0 0;
+            color: #666;
+            font-size: 11px;
+            text-align: left;
+        }
+
+        /* Example clickable region styling (Template for face mapping) */
+        .face-box {
+            position: absolute;
+            border: 2px dashed transparent;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        .face-box:hover {
+            border-color: #007bff;
+            background-color: rgba(0, 123, 255, 0.2);
+        }
+
+        .face-box.active {
+            border-color: #28a745;
+            background-color: rgba(40, 167, 69, 0.3);
+        }
+
+        .sidebar {
+            flex: 0 0 300px;
+            position: sticky;
+            top: 20px;
+            padding: 18px;
+            background: #fafafa;
+            border-radius: 6px;
+            border: 1px solid #e1e4e8;
+            box-sizing: border-box;
+        }
+
+        .sidebar h2 { margin: 0 0 14px; color: #007bff; text-align: center; }
+        .current-photo {
+            display: none;
+            width: 100%;
+            max-height: 360px;
+            object-fit: contain;
+            object-position: top center;
+            background: #eee;
+            border-radius: 6px;
+            margin-bottom: 14px;
+        }
+        .current-photo.visible { display: block; }
+        .photo-caption { margin: -6px 0 14px; color: #666; font-size: 13px; }
+        .info-card { font-size: 16px; color: #444; line-height: 1.5; }
+        .info-card p { margin: 8px 0; }
+        .info-card span { font-weight: bold; color: #111; }
+
+        @media (max-width: 850px) {
+            .container { flex-direction: column; }
+            .image-container { width: 100%; }
+            .sidebar { position: static; flex: 1 1 auto; width: 100%; }
+            .current-photo { max-height: 420px; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Hadas High School, Nagpur, MH - Class of 1980</h1>
+    <p>(Click on any face to view current Information)</p>
+
+    <div class="container">
+        <!-- Photo Container -->
+        <div class="image-container">
+            <!-- Replace 'watermarked_img_1391216261707705899.png' with your image path -->
+            <img src="Gemini_Generated_Image_u6fpd5u6fpd5u6fp.png" alt="Class Photo" id="classPhoto">
+            
+            <!-- 
+              Example Face Mapping Overlays. 
+              You can adjust 'top', 'left', 'width', and 'height' in percentages (%) 
+              so they scale automatically with the image. Repeat for faces 1 to 53.
+            -->
+            <div class="face-box" style="top: 5%; left: 06.0%; width: 4%; height: 8%;" data-id="1" onclick="showFaceInfo(1)"></div>
+            <div class="face-box" style="top: 5%; left: 15.0%; width: 4%; height: 8%;" data-id="2" onclick="showFaceInfo(2)"></div>
+            <div class="face-box" style="top: 5%; left: 22.7%; width: 4%; height: 8%;" data-id="3" onclick="showFaceInfo(3)"></div>
+            <div class="face-box" style="top: 5%; left: 30.9%; width: 4%; height: 8%;" data-id="4" onclick="showFaceInfo(4)"></div>
+            <div class="face-box" style="top: 5%; left: 36.7%; width: 4%; height: 8%;" data-id="5" onclick="showFaceInfo(5)"></div>
+            <div class="face-box" style="top: 5%; left: 44.6%; width: 4%; height: 8%;" data-id="6" onclick="showFaceInfo(6)"></div>
+            <div class="face-box" style="top: 5%; left: 51.8%; width: 4%; height: 8%;" data-id="7" onclick="showFaceInfo(7)"></div>
+            <div class="face-box" style="top: 5%; left: 59.6%; width: 4%; height: 8%;" data-id="8" onclick="showFaceInfo(8)"></div>
+            <div class="face-box" style="top: 5%; left: 66.2%; width: 4%; height: 8%;" data-id="9" onclick="showFaceInfo(9)"></div>
+            <div class="face-box" style="top: 5%; left: 74.9%; width: 4%; height: 8%;" data-id="10" onclick="showFaceInfo(10)"></div>
+            <div class="face-box" style="top: 5%; left: 81.0%; width: 4%; height: 8%;" data-id="11" onclick="showFaceInfo(11)"></div>
+
+            <div class="face-box" style="top: 19%; left: 07.0%; width: 4%; height: 8%;" data-id="12" onclick="showFaceInfo(12)"></div>
+            <div class="face-box" style="top: 19%; left: 12.0%; width: 4%; height: 8%;" data-id="13" onclick="showFaceInfo(13)"></div>
+            <div class="face-box" style="top: 19%; left: 18.3%; width: 4%; height: 8%;" data-id="14" onclick="showFaceInfo(14)"></div>
+            <div class="face-box" style="top: 19%; left: 25.0%; width: 4%; height: 8%;" data-id="15" onclick="showFaceInfo(15)"></div>
+            <div class="face-box" style="top: 18%; left: 32.6%; width: 4%; height: 8%;" data-id="16" onclick="showFaceInfo(16)"></div>
+            <div class="face-box" style="top: 19%; left: 40.6%; width: 4%; height: 8%;" data-id="17" onclick="showFaceInfo(17)"></div>
+            <div class="face-box" style="top: 16%; left: 48.8%; width: 4%; height: 8%;" data-id="18" onclick="showFaceInfo(18)"></div>
+            <div class="face-box" style="top: 17%; left: 55.5%; width: 4%; height: 8%;" data-id="19" onclick="showFaceInfo(19)"></div>
+            <div class="face-box" style="top: 17%; left: 62.6%; width: 4%; height: 8%;" data-id="20" onclick="showFaceInfo(20)"></div>
+            <div class="face-box" style="top: 17%; left: 69.9%; width: 4%; height: 8%;" data-id="21" onclick="showFaceInfo(21)"></div>
+            <div class="face-box" style="top: 17%; left: 76.9%; width: 4%; height: 8%;" data-id="22" onclick="showFaceInfo(22)"></div>
+            <div class="face-box" style="top: 17%; left: 83.1%; width: 4%; height: 8%;" data-id="23" onclick="showFaceInfo(23)"></div>
+
+            <div class="face-box" style="top: 33%; left: 07.6%; width: 4%; height: 8%;" data-id="24" onclick="showFaceInfo(24)"></div>
+            <div class="face-box" style="top: 33%; left: 11.9%; width: 4%; height: 7%;" data-id="25" onclick="showFaceInfo(25)"></div>
+            <div class="face-box" style="top: 33%; left: 20.1%; width: 4%; height: 8%;" data-id="26" onclick="showFaceInfo(26)"></div>
+            <div class="face-box" style="top: 32%; left: 27.0%; width: 4%; height: 8%;" data-id="27" onclick="showFaceInfo(27)"></div>
+            <div class="face-box" style="top: 32%; left: 35.6%; width: 4%; height: 8%;" data-id="28" onclick="showFaceInfo(28)"></div>
+            <div class="face-box" style="top: 29%; left: 46.0%; width: 4%; height: 8%;" data-id="29" onclick="showFaceInfo(29)"></div>
+            <div class="face-box" style="top: 29%; left: 54.0%; width: 4%; height: 8%;" data-id="30" onclick="showFaceInfo(30)"></div>
+            <div class="face-box" style="top: 31%; left: 60.1%; width: 4%; height: 8%;" data-id="31" onclick="showFaceInfo(31)"></div>
+            <div class="face-box" style="top: 30%; left: 68.8%; width: 4%; height: 8%;" data-id="32" onclick="showFaceInfo(32)"></div>
+            <div class="face-box" style="top: 30%; left: 76.4%; width: 4%; height: 8%;" data-id="33" onclick="showFaceInfo(33)"></div>
+            <div class="face-box" style="top: 30%; left: 84.0%; width: 4%; height: 8%;" data-id="34" onclick="showFaceInfo(34)"></div>
+
+            <div class="face-box" style="top: 42%; left: 02.6%; width: 4%; height: 8%;" data-id="35" onclick="showFaceInfo(35)"></div>
+            <div class="face-box" style="top: 41%; left: 13.0%; width: 4%; height: 8%;" data-id="36" onclick="showFaceInfo(36)"></div>
+            <div class="face-box" style="top: 43%; left: 21.1%; width: 4%; height: 8%;" data-id="37" onclick="showFaceInfo(37)"></div>
+            <div class="face-box" style="top: 43%; left: 29.9%; width: 4%; height: 8%;" data-id="38" onclick="showFaceInfo(38)"></div>
+            <div class="face-box" style="top: 44%; left: 37.8%; width: 4%; height: 8%;" data-id="39" onclick="showFaceInfo(39)"></div>
+            <div class="face-box" style="top: 39%; left: 46.4%; width: 4%; height: 8%;" data-id="40" onclick="showFaceInfo(40)"></div>
+            <div class="face-box" style="top: 43%; left: 55.6%; width: 4%; height: 8%;" data-id="41" onclick="showFaceInfo(41)"></div>
+            <div class="face-box" style="top: 43%; left: 63.0%; width: 4%; height: 8%;" data-id="42" onclick="showFaceInfo(42)"></div>
+            <div class="face-box" style="top: 42%; left: 72.8%; width: 4%; height: 8%;" data-id="43" onclick="showFaceInfo(43)"></div>
+            <div class="face-box" style="top: 43%; left: 81.4%; width: 4%; height: 8%;" data-id="44" onclick="showFaceInfo(44)"></div>
+            <div class="face-box" style="top: 42%; left: 89.7%; width: 4%; height: 8%;" data-id="45" onclick="showFaceInfo(45)"></div>
+
+            <div class="face-box" style="top: 60%; left: 03.4%; width: 4%; height: 8%;" data-id="46" onclick="showFaceInfo(46)"></div>
+            <div class="face-box" style="top: 60%; left: 16.5%; width: 4%; height: 8%;" data-id="47" onclick="showFaceInfo(47)"></div>
+            <div class="face-box" style="top: 60%; left: 28.8%; width: 4%; height: 8%;" data-id="48" onclick="showFaceInfo(48)"></div>
+            <div class="face-box" style="top: 64%; left: 43.5%; width: 4%; height: 8%;" data-id="49" onclick="showFaceInfo(49)"></div>
+            <div class="face-box" style="top: 63%; left: 53.8%; width: 4%; height: 8%;" data-id="50" onclick="showFaceInfo(50)"></div>
+            <div class="face-box" style="top: 65%; left: 64.4%; width: 4%; height: 8%;" data-id="51" onclick="showFaceInfo(51)"></div>
+            <div class="face-box" style="top: 62%; left: 77.8%; width: 4%; height: 8%;" data-id="52" onclick="showFaceInfo(52)"></div>
+            <div class="face-box" style="top: 62%; left: 91.8%; width: 4%; height: 8%;" data-id="53" onclick="showFaceInfo(53)"></div>
+            <!-- Add remaining .face-box divs up to 53 -->
+            <p class="prepared-by">Prepared by: Vinod Patrikar, 9869278691</p>
+        </div>
+
+        <!-- Information Sidebar -->
+        <div class="sidebar">
+            <h2>Current Information</h2>
+            <img id="currentPhoto" class="current-photo" alt="Current photograph of selected candidate">
+            <p id="photoCaption" class="photo-caption">Select a face to view the candidate's current photograph.</p>
+            <div id="infoContent" class="info-card">
+                <p>Click a face box on the class photo to view the current photograph and details here.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Place each candidate's current photograph in the SAME folder as this HTML file.
+        // Required filenames: candidate-1.jpg through candidate-53.jpg.
+        // If your photographs use another extension or naming pattern, change photo.src
+        // in showFaceInfo() below to match your filenames.
+
+        // Database containing information for all 53 faces
+        const faceDatabase = {
+            1: { name: "Milind Dharaskar", row: "Top Row", notes: "First student on the top left." },
+            2: { name: "Student #2", row: "Top Row", notes: "Second student on the top row." },
+            3: { name: "Prashant Ghushe", row: "Top Row", notes: "Third student on the top row." },
+            4: { name: "Vikrant Saoji", row: "Top Row", notes: "Fourth student on the top row." },
+            5: { name: "Nitin Sudame", row: "Top Row", notes: "Fifth student on the top row." },
+            6: { name: "Student #6", row: "Top Row", notes: "Sixth student on the top row." },
+            7: { name: "Rajesh Gawande", row: "Top Row", notes: "Seventh student on the top row." },
+            8: { name: "Student #8", row: "Top Row", notes: "Eigth student on the top row." },
+            9: { name: "Shripad Mulavkar", row: "Top Row", notes: "Ninth student on the top row." },
+           10: { name: "Vivek Vishwarupe", row: "Top Row", notes: "Tenth student on the top row." },
+           11: { name: "Sandeep Ektate", row: "Top Row", notes: "Eleventh student on the top row." },
+
+           12: { name: "Jayant Brhamapurikar", row: "Second Row", notes: "First student on the second row." },
+           13: { name: "Vinay Pagedar", row: "Second Row", notes: "Second student on the second row." },
+           14: { name: "Suhas Kulkarni", row: "Second Row", notes: "Third student on the second row." },
+           15: { name: "Shekhar Waikar", row: "Second Row", notes: "Fourth student on the second row." },
+           16: { name: "Student #16", row: "Second Row", notes: "Fifth student on the second row." },
+           17: { name: "Nitin Gavande", row: "Second Row", notes: "Sixth student on the second row." },
+           18: { name: "Bhushan Bapat", row: "Second Row", notes: "Seventh student on the second row." },
+           19: { name: "Vinod Patrikar", row: "9869278691", notes: "Stays in Mumbai / Nagpur. Runs a Civil-Structural Consultancy proprietory firm in the name of Crescent Engineers.", webLink: "https://www.youtube.com/watch?v=XSFMoIwm_uo" },
+           20: { name: "Raju Bapat", row: "Second Row", notes: "Ninth student on the second row." },
+           21: { name: "Student #21", row: "Second Row", notes: "Tenth student on the second row." },
+           22: { name: "Student #22", row: "Second Row", notes: "Eleventh student on the second row." },
+           23: { name: "Student #23", row: "Second Row", notes: "Twelth student on the second row." },
+
+           24: { name: "Shrikant Kshirsagar", row: "Third Row", notes: "First student on the third row." },
+           25: { name: "Arvind Mahalle", row: "Third Row", notes: "Second student on the third row." },
+           26: { name: "Nitin Joshi", row: "Third Row", notes: "Third student on the third row." },
+           27: { name: "Nitin Vaidya", row: "Third Row", notes: "Fourth student on the third row." },
+           28: { name: "Mandar Mulmuley", row: "Third Row", notes: "Fifth student on the third row." },
+           29: { name: "Hemant Babtiwale", row: "Third Row", notes: "Sixth student on the third row." },
+           30: { name: "Prashant Rukhmangad", row: "Third Row", notes: "Seventh student on the third row." },
+           31: { name: "Sandeep Jalgaonkar", row: "Third Row", notes: "Eigth student on the third row." },
+           32: { name: "Ajay Patrikar", row: "Third Row", notes: "Ninth student on the third row." },
+           33: { name: "Shrikant Pophali", row: "Third Row", notes: "Tenth student on the third row." },
+           34: { name: "Abhay Deshpande", row: "Third Row", notes: "Eleventh student on the third row." },
+
+           35: { name: "Sathe", row: "Fourth Row", notes: "First student on the fourth row." },
+           36: { name: "Anjali Lakhe", row: "Fourth Row", notes: "Second student on the fourth row." },
+           37: { name: "Varsha Patil", row: "Fourth Row", notes: "Third student on the fourth row." },
+           38: { name: "Student #38", row: "Fourth Row", notes: "Fourth student on the fourth row." },
+           39: { name: "Student #39", row: "Fourth Row", notes: "Fifth student on the fourth row." },
+           40: { name: "Dhopade Sir", row: "Fourth Row", notes: "Sixth student on the fourth row." },
+           41: { name: "Student #41", row: "Fourth Row", notes: "Seventh student on the fourth row." },
+           42: { name: "Student #42", row: "Fourth Row", notes: "Eigth student on the fourth row." },
+           43: { name: "Student #43", row: "Fourth Row", notes: "Ninth student on the fourth row." },
+           44: { name: "Mohini Sahastrabuddhe", row: "Fourth Row", notes: "Tenth student on the fourth row." },
+           45: { name: "Mangala Bhoyer", row: "Fourth Row", notes: "Eleventh student on the fourth row." },
+
+           46: { name: "Anjali Tankhiwale", row: "Fifth Row", notes: "First student on the fourth row." },
+           47: { name: "Rajeshree Kukde", row: "Fifth Row", notes: "Second student on the fourth row." },
+           48: { name: "Student #48", row: "Fifth Row", notes: "Third student on the fourth row." },
+           49: { name: "Gauri Kunte", row: "Fifth Row", notes: "Fourth student on the fourth row." },
+           50: { name: "Aparna Deshmukh", row: "Fifth Row", notes: "Fifth student on the fourth row." },
+           51: { name: "Student #51", row: "Fifth Row", notes: "Sixth student on the fourth row." },
+           52: { name: "Student #52", row: "Fifth Row", notes: "Seventh student on the fourth row." },
+           53: { name: "Mangala Bhoyer", row: "Fifth Row", notes: "Eigth student on the fourth row." },
+            // Add entries up to 53:
+            // 4: { name: "Student #4", row: "Top Row", notes: "..." },
+        };
+
+        function showFaceInfo(faceId) {
+            // Remove the previous highlight and highlight the selected face.
+            document.querySelectorAll('.face-box').forEach(box => box.classList.remove('active'));
+            const selectedBox = document.querySelector(`[data-id='${faceId}']`);
+            if (selectedBox) selectedBox.classList.add('active');
+
+            const info = faceDatabase[faceId] || {
+                name: `Face #${faceId}`,
+                row: "Unknown",
+                notes: "Detailed information for this specific face has not been added yet."
+            };
+
+            // Current photographs must be stored beside this HTML file and named
+            // candidate-1.jpg, candidate-2.jpg, ... candidate-53.jpg.
+            const photo = document.getElementById('currentPhoto');
+            const caption = document.getElementById('photoCaption');
+            photo.onerror = function () {
+                this.classList.remove('visible');
+                this.removeAttribute('src');
+                caption.textContent = `Photograph not found. Add candidate-${faceId}.jpg in the same folder as this HTML file.`;
+            };
+            photo.onload = function () {
+                this.classList.add('visible');
+                caption.textContent = `Current photograph — ${info.name}`;
+            };
+            photo.src = `candidate-${faceId}.jpg`;
+
+            // Put all candidate information below the photograph.
+            const container = document.getElementById('infoContent');
+            container.replaceChildren();
+
+            const details = [
+                ["Face ID", `#${faceId}`],
+                ["Name", info.name],
+                ["Contact", info.row],
+                ["Notes", info.notes]
+            ];
+
+            details.forEach(([label, value]) => {
+                const paragraph = document.createElement('p');
+                const heading = document.createElement('span');
+                heading.textContent = `${label}: `;
+                paragraph.append(heading, document.createTextNode(value));
+                container.appendChild(paragraph);
+            });
+
+            // Add the candidate's web link at the end of the sidebar.
+            // To provide a link, add webLink: "https://example.com" to that
+            // candidate's entry in faceDatabase. Leave it blank or omit it
+            // when no link is available.
+            const linkParagraph = document.createElement('p');
+            const linkHeading = document.createElement('span');
+            linkHeading.textContent = 'Weblink: ';
+            linkParagraph.appendChild(linkHeading);
+
+            const webLink = typeof info.webLink === 'string' ? info.webLink.trim() : '';
+
+            if (/^https?:\/\//i.test(webLink)) {
+                const link = document.createElement('a');
+                link.href = webLink;
+                link.textContent = 'Click link for more information';
+                link.target = '_blank';
+                link.rel = 'noopener noreferrer';
+                linkParagraph.appendChild(link);
+            } else {
+                linkParagraph.appendChild(document.createTextNode('Not available'));
+            }
+
+            container.appendChild(linkParagraph);
+        }
+    </script>
+</body>
+</html>
